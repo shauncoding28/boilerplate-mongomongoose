@@ -11,8 +11,17 @@ db.once('open', function () {
   console.log('Connected to the database');
 });
 
+const Schema = mongoose.Schema;
+
+const personSchema = new Schema({
+  name: { type: String, required: true },
+  age: { type: Number, min: 0 },
+  favoriteFoods: [String],
+});
 
 let Person;
+
+Person = mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
